@@ -5,16 +5,20 @@
 package jspproject1;
 
 public class Message {
-    String pengirim;
-    String pesan;
+    private String pengirim;
+    private String pesan;
+    private String waktu;
+    private int id;
 
-    public String getPengirim() {
-        return pengirim;
+    public Message(int id, String pengirim, String pesan, String waktu) {
+        this.id = id;
+        this.pengirim = pengirim;
+        this.pesan = pesan;
+        this.waktu = waktu;
     }
 
-    public String getPesan() {
-        return pesan;
-    }
-    
-    
+    public int getId() { return id; }
+    public String getPengirim() { return pengirim; }
+    public String getPesan() { return pesan; }
+    public String getWaktu() { return waktu; }
 }
