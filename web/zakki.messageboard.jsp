@@ -4,14 +4,21 @@
     Author     : acer
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@page import="java.util.ArrayList"%>
+<%@page import="jspproject1.Messager"%>
+<%@page import="jspproject1.Message"%>
+<%
+    Messager messager = new Messager("Zakki");
+
+    if (request.getParameter("delete") != null) {
+        int id = Integer.parseInt(request.getParameter("delete"));
+        messager.deleteMessage(id);
+    } else if (request.getParameter("pengirim") != null) {
+        messager.addMessage(request.getParameter("pengirim"), request.getParameter("pesan"));
+    }
+
+    ArrayList<Message> list = messager.getList();
+    request.setAttribute("list", list);
+    RequestDispatcher dispatcher = request.getRequestDispatcher("zakki.messageboard.view.jsp");
+    dispatcher.forward(request, response);
+%>
